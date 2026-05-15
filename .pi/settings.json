@@ -1,0 +1,148 @@
+{
+  "packages": [
+    "npm:pi-powerline-footer",
+    "npm:@tmustier/pi-usage-extension",
+    "npm:pi-command-history",
+    "npm:pi-ask-user",
+    "npm:pi-rtk-optimizer",
+    "git:github.com/championswimmer/pi-context-usage",
+    "npm:pi-mcp-adapter",
+    "-npm:context-mode",
+    "-npm:pi-prompt-template-model",
+    "-npm:pi-subagents",
+    "-npm:pi-intercom",
+    "-npm:pi-web-access",
+    "-git:github.com/davebcn87/pi-autoresearch"
+  ],
+  "extensions": [
+    "./extensions/permission-gate.ts",
+    "./extensions/protected-paths.ts",
+    "-./extensions/confirm-destructive.ts",
+    "-./extensions/dirty-repo-guard.ts",
+    "./extensions/inline-bash.ts",
+    "./extensions/behavioral-guidelines.ts",
+    "./extensions/pi-documentation.ts",
+    "./extensions/skills-instructions-rewriter.ts",
+    "./extensions/prompt-skills.ts",
+    "./extensions/dump-system-prompt.ts",
+    "./extensions/profile/index.ts",
+    "-./extensions/pi-goal/index.ts"
+  ],
+  "prompts": [
+    "./prompts/architecture/architecture-deepening.md",
+    "./prompts/architecture/architecture-review.md",
+    "./prompts/architecture/feature-design.md",
+    "./prompts/architecture/project-next-step.md",
+    "./prompts/planning/convert-plan-to-folder.md",
+    "./prompts/planning/write-implementation-plan.md",
+    "./prompts/execution/execute-plan-simple.md",
+    "./prompts/execution/execute-plan-with-subagents.md",
+    "./prompts/execution/execute-plan-with-subagents-async.md",
+    "./prompts/review/code-quality-review.md",
+    "./prompts/review/spec-review.md",
+    "./prompts/review/review-code.md",
+    "./prompts/review/fix-review-issues.md",
+    "./prompts/review/verify-before-done.md",
+    "./prompts/frontend/frontend-design-direction.md",
+    "./prompts/frontend/frontend-polish-pass.md",
+    "./prompts/frontend/frontend-ui-audit.md",
+    "./prompts/frontend/interface-design-direction.md",
+    "./prompts/frontend/interface-polish-pass.md",
+    "./prompts/frontend/shadcn-ui-build.md",
+    "./prompts/react/react-component-api-refactor.md",
+    "./prompts/react/react-performance-pass.md",
+    "./prompts/react/react-view-transitions-build.md",
+    "./prompts/system/commit-work.md",
+    "./prompts/system/create-agent-workflow.md",
+    "./prompts/system/create-new-skill.md",
+    "./prompts/system/debug-issue.md",
+    "./prompts/system/grill-with-docs-session.md",
+    "./prompts/system/improve-agent-system.md",
+    "./prompts/system/improve-skill-system.md",
+    "./prompts/system/refactor-agent-instructions.md"
+  ],
+  "extensionState": {
+    "behavioralGuidelinesEnabled": true,
+    "behavioralGuidelinesCommunicationAndToolUseEnabled": true,
+    "behavioralGuidelinesRepositoryInstructionsEnabled": false,
+    "behavioralGuidelinesExecutionPolicyEnabled": true,
+    "behavioralGuidelinesEvidenceDisciplineEnabled": true,
+    "behavioralGuidelinesChangeScopeEnabled": true,
+    "behavioralGuidelinesValidationEnabled": true,
+    "behavioralGuidelinesEfficiencyEnabled": true,
+    "behavioralGuidelinesFinalResponseEnabled": true,
+    "piDocumentationEnabled": false,
+    "skillsInstructionsRewriterEnabled": true
+  },
+  "subagents": {
+    "agentOverrides": {
+      "scout": {
+        "disabled": true
+      },
+      "planner": {
+        "disabled": true
+      },
+      "worker": {
+        "disabled": true
+      },
+      "reviewer": {
+        "disabled": true
+      },
+      "context-builder": {
+        "disabled": true
+      },
+      "researcher": {
+        "disabled": true
+      },
+      "delegate": {
+        "disabled": true
+      },
+      "oracle": {
+        "disabled": true
+      },
+      "oracle-executor": {
+        "disabled": true
+      }
+    }
+  },
+  "skills": [
+    "-skills/agent-md-refactor",
+    "-skills/api-design",
+    "-skills/architecture-diagram",
+    "-skills/backend-patterns",
+    "-skills/banner-design",
+    "-skills/brainstorming",
+    "-skills/brand",
+    "-skills/coding-standards",
+    "-skills/composition-patterns",
+    "-skills/database-migrations",
+    "-skills/design-system",
+    "-skills/dispatching-parallel-agents",
+    "-skills/docker-patterns",
+    "-skills/executing-plans",
+    "-skills/finishing-a-development-branch",
+    "-skills/frontend-skill",
+    "-skills/golang-patterns",
+    "-skills/golang-testing",
+    "-skills/interface-design",
+    "-skills/pi-goal",
+    "-skills/postgres-patterns",
+    "-skills/prd",
+    "-skills/prompt-leverage",
+    "-skills/react-best-practices",
+    "-skills/react-view-transitions",
+    "-skills/readiness-report",
+    "-skills/receiving-code-review",
+    "-skills/requesting-code-review",
+    "-skills/shadcn-best-practices",
+    "-skills/skill-creator",
+    "-skills/slides",
+    "-skills/subagent-driven-development",
+    "-skills/test-driven-development",
+    "-skills/ui-ux-pro-max",
+    "-skills/verification-before-completion",
+    "-skills/web-design-guidelines",
+    "-skills/writing-plans",
+    "-skills/writing-skills"
+  ]
+}

@@ -1,0 +1,215 @@
+{
+  "defaultProfile": "base",
+  "profiles": {
+    "base": {
+      "skillsEnable": [
+        "bootstrap-project-context",
+        "grill-me",
+        "grill-with-docs",
+        "improve-codebase-architecture",
+        "handoff",
+        "prototype",
+        "diagnose",
+        "code-reviewer",
+        "context7-cli",
+        "ask-user",
+        "git-commit",
+        "pragmatic-principles",
+        "systematic-debugging",
+        "developing-with-streamlit"
+      ],
+      "mcpServersEnable": [],
+      "mcpServersDisable": [
+        "chrome-devtools",
+        "context-mode"
+      ]
+    },
+    "superpowers": {
+      "skillsEnable": [
+        "bootstrap-project-context",
+        "grill-me",
+        "grill-with-docs",
+        "improve-codebase-architecture",
+        "handoff",
+        "prototype",
+        "diagnose",
+        "code-reviewer",
+        "context7-cli",
+        "ask-user",
+        "git-commit",
+        "pragmatic-principles",
+        "systematic-debugging",
+        "brainstorming",
+        "dispatching-parallel-agents",
+        "executing-plans",
+        "finishing-a-development-branch",
+        "receiving-code-review",
+        "requesting-code-review",
+        "subagent-driven-development",
+        "test-driven-development",
+        "verification-before-completion",
+        "writing-plans"
+      ],
+      "mcpServersEnable": [],
+      "mcpServersDisable": [
+        "chrome-devtools",
+        "context-mode"
+      ]
+    },
+    "backend": {
+      "skillsEnable": [
+        "bootstrap-project-context",
+        "grill-me",
+        "improve-codebase-architecture",
+        "grill-with-docs",
+        "handoff",
+        "prototype",
+        "code-reviewer",
+        "context7-cli",
+        "ask-user",
+        "git-commit",
+        "pragmatic-principles",
+        "systematic-debugging",
+        "brainstorming",
+        "dispatching-parallel-agents",
+        "executing-plans",
+        "finishing-a-development-branch",
+        "receiving-code-review",
+        "requesting-code-review",
+        "subagent-driven-development",
+        "test-driven-development",
+        "verification-before-completion",
+        "writing-plans",
+        "api-design",
+        "backend-patterns",
+        "database-migrations",
+        "golang-patterns",
+        "golang-testing",
+        "postgres-patterns"
+      ],
+      "mcpServersEnable": [],
+      "mcpServersDisable": [
+        "chrome-devtools",
+        "context-mode"
+      ]
+    },
+    "frontend": {
+      "skillsEnable": [
+        "bootstrap-project-context",
+        "grill-me",
+        "grill-with-docs",
+        "improve-codebase-architecture",
+        "handoff",
+        "prototype",
+        "diagnose",
+        "code-reviewer",
+        "context7-cli",
+        "ask-user",
+        "git-commit",
+        "pragmatic-principles",
+        "systematic-debugging",
+        "brainstorming",
+        "dispatching-parallel-agents",
+        "executing-plans",
+        "finishing-a-development-branch",
+        "receiving-code-review",
+        "requesting-code-review",
+        "subagent-driven-development",
+        "test-driven-development",
+        "verification-before-completion",
+        "writing-plans",
+        "coding-standards",
+        "composition-patterns",
+        "frontend-skill",
+        "react-best-practices",
+        "banner-design",
+        "design-system",
+        "react-view-transitions",
+        "ui-ux-pro-max",
+        "brand",
+        "shadcn-best-practices",
+        "web-design-guidelines",
+        "interface-design",
+        "slides"
+      ],
+      "mcpServersEnable": [
+        "chrome-devtools"
+      ],
+      "mcpServersDisable": [
+        "context-mode"
+      ]
+    },
+    "devops": {
+      "skillsEnable": [
+        "bootstrap-project-context",
+        "improve-codebase-architecture",
+        "grill-me",
+        "grill-with-docs",
+        "diagnose",
+        "code-reviewer",
+        "context7-cli",
+        "ask-user",
+        "git-commit",
+        "pragmatic-principles",
+        "systematic-debugging",
+        "brainstorming",
+        "dispatching-parallel-agents",
+        "executing-plans",
+        "finishing-a-development-branch",
+        "receiving-code-review",
+        "requesting-code-review",
+        "subagent-driven-development",
+        "test-driven-development",
+        "verification-before-completion",
+        "writing-plans",
+        "docker-patterns"
+      ],
+      "mcpServersEnable": [],
+      "mcpServersDisable": [
+        "chrome-devtools",
+        "context-mode"
+      ]
+    },
+    "agentic": {
+      "skillsEnable": [
+        "bootstrap-project-context",
+        "improve-codebase-architecture",
+        "grill-me",
+        "grill-with-docs",
+        "ask-user",
+        "git-commit",
+        "pragmatic-principles",
+        "prompt-leverage",
+        "agent-md-refactor",
+        "writing-skills",
+        "skill-creator"
+      ],
+      "mcpServersEnable": [],
+      "mcpServersDisable": [
+        "chrome-devtools",
+        "context-mode"
+      ]
+    },
+    "documenter": {
+      "skillsEnable": [
+        "bootstrap-project-context",
+        "prd"
+      ],
+      "mcpServersEnable": [],
+      "mcpServersDisable": [
+        "chrome-devtools",
+        "context-mode"
+      ]
+    },
+    "readiness-report": {
+      "skillsEnable": [
+        "readiness-report"
+      ],
+      "mcpServersEnable": [],
+      "mcpServersDisable": [
+        "chrome-devtools",
+        "context-mode"
+      ]
+    }
+  }
+}
