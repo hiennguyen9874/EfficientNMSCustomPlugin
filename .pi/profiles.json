@@ -16,7 +16,8 @@
         "git-commit",
         "pragmatic-principles",
         "systematic-debugging",
-        "developing-with-streamlit"
+        "developing-with-streamlit",
+        "creating-custom-tensorrt-plugins"
       ],
       "mcpServersEnable": [],
       "mcpServersDisable": [

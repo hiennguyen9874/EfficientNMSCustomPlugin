@@ -387,9 +387,12 @@ IPluginV2DynamicExt* EfficientNMSCustomPluginCreator::createPlugin(const char* n
         PLUGIN_VALIDATE(fc != nullptr);
         PluginField const* fields = fc->fields;
         PLUGIN_VALIDATE(fields != nullptr);
-        plugin::validateRequiredAttributesExist({"score_threshold", "iou_threshold", "max_output_boxes",
-                                                    "background_class", "score_activation", "box_coding"},
-            fc);
+        bool hasScoreThreshold{false};
+        bool hasIouThreshold{false};
+        bool hasMaxOutputBoxes{false};
+        bool hasBackgroundClass{false};
+        bool hasScoreActivation{false};
+        bool hasBoxCoding{false};
         for (int32_t i{0}; i < fc->nbFields; ++i)
         {
             char const* attrName = fields[i].name;
@@ -398,6 +401,8 @@ IPluginV2DynamicExt* EfficientNMSCustomPluginCreator::createPlugin(const char* n
                 PLUGIN_VALIDATE(fields[i].type == PluginFieldType::kFLOAT32);
                 auto const scoreThreshold = *(static_cast<float const*>(fields[i].data));
                 PLUGIN_VALIDATE(scoreThreshold >= 0.0F);
+                mParam.scoreThreshold = scoreThreshold;
+                hasScoreThreshold = true;
             }
             if (!strcmp(attrName, "iou_threshold"))
             {
@@ -405,6 +410,7 @@ IPluginV2DynamicExt* EfficientNMSCustomPluginCreator::createPlugin(const char* n
                 auto const iouThreshold = *(static_cast<float const*>(fields[i].data));
                 PLUGIN_VALIDATE(iouThreshold > 0.0F);
                 mParam.iouThreshold = iouThreshold;
+                hasIouThreshold = true;
             }
             if (!strcmp(attrName, "max_output_boxes"))
             {
@@ -412,17 +418,20 @@ IPluginV2DynamicExt* EfficientNMSCustomPluginCreator::createPlugin(const char* n
                 auto const numOutputBoxes = *(static_cast<int32_t const*>(fields[i].data));
                 PLUGIN_VALIDATE(numOutputBoxes > 0);
                 mParam.numOutputBoxes = numOutputBoxes;
+                hasMaxOutputBoxes = true;
             }
             if (!strcmp(attrName, "background_class"))
             {
                 PLUGIN_VALIDATE(fields[i].type == PluginFieldType::kINT32);
                 mParam.backgroundClass = *(static_cast<int32_t const*>(fields[i].data));
+                hasBackgroundClass = true;
             }
             if (!strcmp(attrName, "score_activation"))
             {
                 auto const scoreSigmoid = *(static_cast<int32_t const*>(fields[i].data));
                 PLUGIN_VALIDATE(scoreSigmoid == 0 || scoreSigmoid == 1);
                 mParam.scoreSigmoid = static_cast<bool>(scoreSigmoid);
+                hasScoreActivation = true;
             }
             if (!strcmp(attrName, "box_coding"))
             {
@@ -430,8 +439,16 @@ IPluginV2DynamicExt* EfficientNMSCustomPluginCreator::createPlugin(const char* n
                 auto const boxCoding = *(static_cast<int32_t const*>(fields[i].data));
                 PLUGIN_VALIDATE(boxCoding == 0 || boxCoding == 1);
                 mParam.boxCoding = boxCoding;
+                hasBoxCoding = true;
             }
         }
+
+        PLUGIN_VALIDATE(hasScoreThreshold);
+        PLUGIN_VALIDATE(hasIouThreshold);
+        PLUGIN_VALIDATE(hasMaxOutputBoxes);
+        PLUGIN_VALIDATE(hasBackgroundClass);
+        PLUGIN_VALIDATE(hasScoreActivation);
+        PLUGIN_VALIDATE(hasBoxCoding);
 
         auto* plugin = new EfficientNMSCustomPlugin(mParam);
         plugin->setPluginNamespace(mNamespace.c_str());
