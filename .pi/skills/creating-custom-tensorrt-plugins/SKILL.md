@@ -43,7 +43,8 @@ Do not use this skill for pure model accuracy tuning unrelated to plugin integra
    - Minimal check app should:
      - load `.so` (`dlopen`) or `runtime->getPluginRegistry().loadLibrary(...)`
      - query creator by name/version from plugin registry
-   - Fail loudly if creator is missing.
+     - call `createPlugin()` once with a minimal valid `PluginFieldCollection`
+   - Fail loudly if creator is missing or `createPlugin()` returns null.
 
 5. **Only then add end-to-end example**
    - Build engine from ONNX or network API.
@@ -143,7 +144,7 @@ int main(int argc, char** argv) {
 
 - Build plugin library first.
 - Load plugin library before parsing ONNX or deserializing engine.
-- With `trtexec`, use `--staticPlugins=/path/to/libmy_plugin.so`.
+- With `trtexec`, use `--plugins=/path/to/libmy_plugin.so`.
 - In C++, use either:
   - `runtime->getPluginRegistry().loadLibrary(path)` (runtime path), or
   - `dlopen(path, RTLD_LAZY)` + registry lookup.
@@ -153,6 +154,7 @@ int main(int argc, char** argv) {
 - Configure: CMake succeeds with CUDA compiler detected.
 - Build: plugin `.so` produced.
 - Runtime check: creator lookup succeeds.
+- Runtime smoke check: `createPlugin()` succeeds.
 - If engine path included: parser/runtime can deserialize with plugin loaded.
 
 ## Common Failure Modes
@@ -161,6 +163,7 @@ int main(int argc, char** argv) {
 - CUDA not configured (`CMAKE_CUDA_COMPILER`, `CMAKE_CUDA_ARCHITECTURES`) → configure/build failure.
 - TensorRT headers/libs not discoverable → compile/link errors.
 - Plugin loaded too late (after parse/deserialize) → unresolved custom op/plugin layer.
+- Registry lookup passes but parse or `createPlugin()` fails with `undefined symbol` → likely TensorRT OSS/runtime mismatch or unavailable helper symbol in deployed TRT build.
 
 ## References
 
