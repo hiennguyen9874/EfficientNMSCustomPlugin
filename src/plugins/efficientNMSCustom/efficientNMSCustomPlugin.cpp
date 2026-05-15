@@ -461,3 +461,5 @@ IPluginV2DynamicExt* EfficientNMSCustomPluginCreator::deserializePlugin(
     }
     return nullptr;
 }
+
+REGISTER_TENSORRT_PLUGIN(EfficientNMSCustomPluginCreator);

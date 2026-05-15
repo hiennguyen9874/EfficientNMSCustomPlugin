@@ -1,21 +1,32 @@
-#
-# Copyright (c) 2021, NVIDIA CORPORATION. All rights reserved.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
-file(GLOB SRCS *.cpp)
-set(PLUGIN_SOURCES ${PLUGIN_SOURCES} ${SRCS})
-set(PLUGIN_SOURCES ${PLUGIN_SOURCES} PARENT_SCOPE)
-file(GLOB CU_SRCS *.cu)
-set(PLUGIN_CU_SOURCES ${PLUGIN_CU_SOURCES} ${CU_SRCS})
-set(PLUGIN_CU_SOURCES ${PLUGIN_CU_SOURCES} PARENT_SCOPE)
+file(GLOB EFFICIENT_NMS_CUSTOM_SRCS CONFIGURE_DEPENDS *.cpp *.cu)
+
+if(NOT TENSORRT_OSS_ROOT)
+    set(TENSORRT_OSS_ROOT "/home/jovyan/workspace/TensorRT")
+endif()
+
+set(TRT_OSS_PLUGIN_DIR "${TENSORRT_OSS_ROOT}/plugin")
+set(TRT_OSS_COMMON_DIR "${TRT_OSS_PLUGIN_DIR}/common")
+
+if(NOT EXISTS "${TRT_OSS_COMMON_DIR}/plugin.h")
+    message(FATAL_ERROR "Missing TensorRT OSS plugin common headers. Set -DTENSORRT_OSS_ROOT to TensorRT OSS root (expected: ${TRT_OSS_COMMON_DIR}/plugin.h)")
+endif()
+
+add_library(efficient_nms_custom SHARED ${EFFICIENT_NMS_CUSTOM_SRCS})
+
+target_include_directories(efficient_nms_custom
+    PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}
+        ${TENSORRT_INCLUDE_DIR}
+        ${TRT_OSS_PLUGIN_DIR}
+)
+
+target_link_libraries(efficient_nms_custom
+    PRIVATE
+        ${NVINFER_LIB}
+        ${NVINFER_PLUGIN_LIB}
+        CUDA::cudart
+)
+
+set_target_properties(efficient_nms_custom PROPERTIES
+    OUTPUT_NAME efficient_nms_custom
+)
