@@ -41,10 +41,11 @@ Do not use this skill for pure model accuracy tuning unrelated to plugin integra
 
 4. **Load and verify runtime registration**
    - Minimal check app should:
-     - load `.so` (`dlopen`) or `runtime->getPluginRegistry().loadLibrary(...)`
+     - load `.so` (`dlopen` with `RTLD_NOW | RTLD_LOCAL`) or `runtime->getPluginRegistry().loadLibrary(...)`
      - query creator by name/version from plugin registry
      - call `createPlugin()` once with a minimal valid `PluginFieldCollection`
    - Fail loudly if creator is missing or `createPlugin()` returns null.
+   - Add a fast linker sanity check in the loop: `ldd -r /path/to/libplugin.so` must report no `undefined symbol`/`not found`.
 
 5. **Only then add end-to-end example**
    - Build engine from ONNX or network API.
@@ -124,7 +125,7 @@ set_target_properties(my_plugin PROPERTIES OUTPUT_NAME my_plugin)
 #include "NvInferPlugin.h"
 
 int main(int argc, char** argv) {
-    void* h = dlopen(argv[1], RTLD_LAZY);
+    void* h = dlopen(argv[1], RTLD_NOW | RTLD_LOCAL);
     if (!h) return 1;
 
     auto* registry = getPluginRegistry();
@@ -164,6 +165,7 @@ int main(int argc, char** argv) {
 - TensorRT headers/libs not discoverable → compile/link errors.
 - Plugin loaded too late (after parse/deserialize) → unresolved custom op/plugin layer.
 - Registry lookup passes but parse or `createPlugin()` fails with `undefined symbol` → likely TensorRT OSS/runtime mismatch or unavailable helper symbol in deployed TRT build.
+- `ldd -r libplugin.so` shows unresolved helpers (for example `dataTypeSize(nvinfer1::DataType)`) → symbol is declared in OSS headers but not provided by deployed runtime; define/link that helper inside your plugin target (or link the exact object/library that defines it).
 
 ## References
 

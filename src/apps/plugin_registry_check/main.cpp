@@ -33,7 +33,7 @@ int main(int argc, char** argv)
     }
 
     std::string const pluginPath{argv[1]};
-    void* handle = dlopen(pluginPath.c_str(), RTLD_LAZY);
+    void* handle = dlopen(pluginPath.c_str(), RTLD_NOW | RTLD_LOCAL);
     if (handle == nullptr)
     {
         std::cerr << "dlopen failed: " << dlerror() << '\n';
