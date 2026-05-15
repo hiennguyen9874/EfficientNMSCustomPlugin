@@ -86,3 +86,4 @@ TensorRT-Custom-Plugin-Example
 build
 build2
 weights
+build-vendored

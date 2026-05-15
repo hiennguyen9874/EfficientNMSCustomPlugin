@@ -19,21 +19,21 @@ The checker loads the plugin `.so` with `dlopen()` and verifies the TensorRT plu
 - CMake >= 3.22
 - CUDA Toolkit (with `nvcc`)
 - TensorRT installed (headers + libs)
-- TensorRT OSS source tree (for `plugin/common` headers used by this plugin)
+- TensorRT OSS `plugin/common` headers (vendored in this repo under `third_party/tensorrt_oss`) or an external TensorRT OSS source tree
 
 ## Configure
 
 ```bash
 cmake -S . -B build \
   -DCMAKE_CUDA_COMPILER=/usr/local/cuda-12.1/bin/nvcc \
-  -DTENSORRT_ROOT=/usr \
-  -DTENSORRT_OSS_ROOT=/home/jovyan/workspace/TensorRT
+  -DTENSORRT_ROOT=/usr
 ```
 
 Notes:
 
 - `TENSORRT_ROOT` should contain `include/` and `lib/`.
-- `TENSORRT_OSS_ROOT` should contain `plugin/common/plugin.h`.
+- By default, `TENSORRT_OSS_ROOT` uses the vendored path `third_party/tensorrt_oss`.
+- You can override with `-DTENSORRT_OSS_ROOT=/path/to/TensorRT` (must contain `plugin/common/plugin.h`).
 
 ## Build
 

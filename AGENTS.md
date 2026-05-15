@@ -5,7 +5,8 @@ Standalone TensorRT plugin build for `EfficientNMSCustom` plus a minimal runtime
 ## Quick Commands
 
 - Configure:
-  - `cmake -S . -B build -DCMAKE_CUDA_COMPILER=/usr/local/cuda-12.1/bin/nvcc -DTENSORRT_ROOT=/usr -DTENSORRT_OSS_ROOT=/home/jovyan/workspace/TensorRT`
+  - `cmake -S . -B build -DCMAKE_CUDA_COMPILER=/usr/local/cuda-12.1/bin/nvcc -DTENSORRT_ROOT=/usr`
+  - Optional override: `-DTENSORRT_OSS_ROOT=/path/to/TensorRT`
 - Build:
   - `cmake --build build -j`
 - Run plugin registry check:

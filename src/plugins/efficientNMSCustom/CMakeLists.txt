@@ -1,14 +1,15 @@
 file(GLOB EFFICIENT_NMS_CUSTOM_SRCS CONFIGURE_DEPENDS *.cpp *.cu)
 
+set(VENDORED_TRT_OSS_ROOT "${PROJECT_SOURCE_DIR}/third_party/tensorrt_oss")
 if(NOT TENSORRT_OSS_ROOT)
-    set(TENSORRT_OSS_ROOT "/home/jovyan/workspace/TensorRT")
+    set(TENSORRT_OSS_ROOT "${VENDORED_TRT_OSS_ROOT}")
 endif()
 
 set(TRT_OSS_PLUGIN_DIR "${TENSORRT_OSS_ROOT}/plugin")
 set(TRT_OSS_COMMON_DIR "${TRT_OSS_PLUGIN_DIR}/common")
 
 if(NOT EXISTS "${TRT_OSS_COMMON_DIR}/plugin.h")
-    message(FATAL_ERROR "Missing TensorRT OSS plugin common headers. Set -DTENSORRT_OSS_ROOT to TensorRT OSS root (expected: ${TRT_OSS_COMMON_DIR}/plugin.h)")
+    message(FATAL_ERROR "Missing TensorRT OSS plugin common headers. Expected ${TRT_OSS_COMMON_DIR}/plugin.h (default vendored path: ${VENDORED_TRT_OSS_ROOT}).")
 endif()
 
 add_library(efficient_nms_custom SHARED ${EFFICIENT_NMS_CUSTOM_SRCS})
